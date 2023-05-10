@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/microservices/actor-service/actor-service.iml" filepath="$PROJECT_DIR$/microservices/actor-service/actor-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infraestructure/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/infraestructure/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infraestructure/config-server/config-server.iml" filepath="$PROJECT_DIR$/infraestructure/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dependencies/dto-service/dto-service.iml" filepath="$PROJECT_DIR$/dependencies/dto-service/dto-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infraestructure/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/infraestructure/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infraestructure/infraestructure.iml" filepath="$PROJECT_DIR$/infraestructure/infraestructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/microservices.iml" filepath="$PROJECT_DIR$/microservices/microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent-service.iml" filepath="$PROJECT_DIR$/parent-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/ticket-service/ticket-service.iml" filepath="$PROJECT_DIR$/microservices/ticket-service/ticket-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/travel-service/travel-service.iml" filepath="$PROJECT_DIR$/microservices/travel-service/travel-service.iml" />
+    </modules>
+  </component>
+</project>

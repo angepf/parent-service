@@ -1,0 +1,131 @@
+version: '3.9'
+services:
+
+  ##########################################################################
+  #database service
+  ##########################################################################
+  postgres_db:
+    container_name: postgres
+    image: postgres:14-alpine
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: usTesis
+      POSTGRES_PASSWORD: pwTesis
+      POSTGRES_DB: bdTesis
+    volumes:
+      - data-postgres:/var/lib/postgresql/data
+    restart: always
+
+  eureka-server:
+    container_name: eureka-server
+    image: quisange/tesis:eureka-server
+    ports:
+      - 9091:9091
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+
+  api-gateway:
+    container_name: api-gateway
+    image: quisange/tesis:api-gateway
+    ports:
+      - 9090:9090
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+    depends_on:
+      - eureka-server
+
+  ##########################################################################
+  #configuration service
+  ##########################################################################
+  config-server:
+    container_name: config-server
+    image: quisange/tesis:config-server
+    volumes:
+      #this it use because we are using a local github repository /host/path:/container/path use ./ for relative path
+      - ./config-server-repo:/tmp/config-server-repo
+      #All projets will have a variable value  DEUREKA_SERVER this tell where find a registry-discovery server
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+        -DEUREKA_SERVER=http://eureka-server:9091/eureka/
+        -DREMOTE_REPOSITORY=https://github.com/angepf/microservices-project.git
+        -DREPOSITORY_DIR=config-properties
+        -DREPOSITORY_BRANCH=main
+        -DCONFIG_SERVER_USER=angepf
+        -DCONFIG_SERVER_PASSWORD=miisG.210
+    depends_on:
+      - api-gateway
+      - eureka-server
+    ports:
+      - 9092:9092
+
+  ##########################################################################
+  #actor service
+  ##########################################################################
+  actor-service:
+    container_name: actor-service
+    image: quisange/tesis:actor-service
+    ports:
+      - 8081:8081
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+        -DEUREKA_SERVER=http://eureka-server:9091/eureka/
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - config-server
+      - postgres_db
+    restart: always
+
+
+  ##########################################################################
+  #travel service
+  ##########################################################################
+  travel-service:
+    container_name: travel-service
+    image: quisange/tesis:travel-service
+    ports:
+      - 8082:8082
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+        -DEUREKA_SERVER=http://eureka-server:9091/eureka/
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - config-server
+      - postgres_db
+    restart: always
+
+  ##########################################################################
+  #ticket service
+  ##########################################################################
+  ticket-service:
+    container_name: ticket-service
+    image: quisange/tesis:ticket-service
+    ports:
+      - 8083:8083
+    environment:
+      - JAVA_OPTS=
+        -Xms256M
+        -Xmx256M
+        -DEUREKA_SERVER=http://eureka-server:9091/eureka/
+    depends_on:
+      - eureka-server
+      - api-gateway
+      - config-server
+      - postgres_db
+    restart: always
+
+volumes:
+  data-postgres:
+    name: data-postgres

@@ -1,0 +1,22 @@
+server:
+  port: 9092
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://eureka-server:9091/eureka}
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/angepf/microservices-project.git
+          searchPaths: config-properties
+        default-label: main
+  security:
+    user:
+      name: ${CONFIG_SERVER_USER:angepf}
+      password: ${CONFIG_SERVER_PASSWORD:miisG.210}
