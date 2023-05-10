@@ -13,7 +13,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/angepf/microservices-project.git
+          uri: https://github.com/angepf/parent-service.git
           searchPaths: config-properties
         default-label: main
   security:

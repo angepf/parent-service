@@ -54,7 +54,7 @@ services:
         -Xms256M
         -Xmx256M
         -DEUREKA_SERVER=http://eureka-server:9091/eureka/
-        -DREMOTE_REPOSITORY=https://github.com/angepf/microservices-project.git
+        -DREMOTE_REPOSITORY=https://github.com/angepf/parent-service.git
         -DREPOSITORY_DIR=config-properties
         -DREPOSITORY_BRANCH=main
         -DCONFIG_SERVER_USER=angepf
