@@ -113,11 +113,6 @@
             <version>2.1.214</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.cloud.dependencies</groupId>
-            <artifactId>dto-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
